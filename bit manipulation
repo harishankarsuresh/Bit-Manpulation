@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <sys/time.h>
+
+printbinary(float num)
+{
+
+/* printing integer value*/
+	int i=(sizeof(int)*8)-1;
+	int t = (int)num;
+	while(i>=0){
+		printf("%d",((t>>i) & 1) );
+		i--;
+	}
+
+
+printf(".");
+
+/*printing decimal part of the number*/
+	float v,temp;
+	v=num-(float)t;
+	//printf("v=%f\n",v );
+	temp = 2*v;
+	for (i = 0; i < (sizeof(int)*8); ++i)
+	{
+		if (temp>1)
+		{
+			printf("1");
+			temp = temp-1;
+			temp = temp*2;
+		}
+		else{
+			printf("0");
+			temp = temp*2;
+		}
+	}
+	printf("\n");
+
+
+}
+
+int main(int argc, char const *argv[])
+{
+	float n;
+	printf("Enter float number to be printed in binary\n");
+	scanf("%f",&n);
+	printbinary(n);
+	return 0;
+}
